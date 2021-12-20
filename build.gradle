@@ -237,8 +237,12 @@ distributions {
 jar {
     manifest {
         attributes(
-                'Version': "${project.version}"
+                'Version': "${project.version}",
+                'Main-Class': 'io.aiven.kafka.connect.s3.AivenKafkaConnectS3SinkConnector'
         )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
